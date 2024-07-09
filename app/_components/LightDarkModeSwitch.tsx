@@ -1,4 +1,4 @@
-import * as Icons from "@radix-ui/react-icons";
+import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 
 interface LightDarkModeSwitchType {
   title: string;
@@ -10,8 +10,8 @@ const LightDarkModeSwitch: React.FC<LightDarkModeSwitchType> = ({
   handleSwitch,
 }) => {
   return (
-    <div className="mr-2" onClick={handleSwitch}>
-      {title === "dark" ? <Icons.MoonIcon /> : <Icons.SunIcon />}
+    <div className="mr-2 cursor-pointer" onClick={handleSwitch}>
+      {title === "dark" ? <MoonIcon /> : <SunIcon />}
     </div>
   );
 };
