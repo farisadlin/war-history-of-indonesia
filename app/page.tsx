@@ -2,8 +2,9 @@
 import { Theme } from "@radix-ui/themes";
 import NavigationBar from "./_components/NavigationBar";
 import useLightDarkMode from "./_hooks/UseLightDarkMode";
+import { appWithTranslation } from "next-i18next";
 
-export default function Home() {
+function Home() {
   const { lightDarkMode } = useLightDarkMode();
 
   return (
@@ -19,3 +20,5 @@ export default function Home() {
     </Theme>
   );
 }
+
+export default appWithTranslation(Home);

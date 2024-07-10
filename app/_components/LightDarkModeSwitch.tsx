@@ -1,7 +1,7 @@
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 
 interface LightDarkModeSwitchType {
-  title: string;
+  title: string | undefined;
   handleSwitch: () => void;
 }
 

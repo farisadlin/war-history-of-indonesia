@@ -1,5 +1,5 @@
-export type LightDarkModeType = "light" | "dark";
-export type TranslationType = "EN" | "ID";
+export type LightDarkModeType = "light" | "dark" | undefined;
+export type TranslationType = "en" | "id";
 
 export interface TranslationContextType {
   translationLang: TranslationType;

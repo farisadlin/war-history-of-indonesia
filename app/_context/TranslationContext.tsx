@@ -1,6 +1,7 @@
 "use client";
-import React, { createContext, ReactNode, useState } from "react";
-import { TranslationType, TranslationContextType } from "../_types";
+import React, { createContext, ReactNode } from "react";
+import { TranslationContextType } from "../_types";
+import { useTranslate } from "../_hooks/UseTranslate";
 
 export const TranslationContext = createContext<
   TranslationContextType | undefined
@@ -9,14 +10,20 @@ export const TranslationContext = createContext<
 export const TranslationContextProvider: React.FC<{
   children: ReactNode;
 }> = ({ children }) => {
-  const [translationLang, setTranslationLang] = useState<TranslationType>("EN");
+  const { language, setLanguage } = useTranslate();
 
   const toggleTranslation = () => {
-    setTranslationLang((prevMode) => (prevMode === "EN" ? "ID" : "EN"));
+    if (language === "en") {
+      setLanguage("id");
+    } else {
+      setLanguage("en");
+    }
   };
 
   return (
-    <TranslationContext.Provider value={{ translationLang, toggleTranslation }}>
+    <TranslationContext.Provider
+      value={{ translationLang: language, toggleTranslation }}
+    >
       {children}
     </TranslationContext.Provider>
   );

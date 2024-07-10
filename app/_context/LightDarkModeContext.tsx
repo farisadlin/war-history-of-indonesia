@@ -1,6 +1,7 @@
 "use client";
-import React, { createContext, ReactNode, useState } from "react";
+import React, { createContext, ReactNode, useEffect, useState } from "react";
 import { LightDarkModeContextType, LightDarkModeType } from "../_types";
+import { useCookies } from "next-client-cookies";
 
 export const LightDarkModeContext = createContext<
   LightDarkModeContextType | undefined
@@ -9,11 +10,25 @@ export const LightDarkModeContext = createContext<
 export const LightDarkModeContextProvider: React.FC<{
   children: ReactNode;
 }> = ({ children }) => {
-  const [lightDarkMode, setLightDarkMode] = useState<LightDarkModeType>("dark");
+  const cookies = useCookies();
+  const storedTheme = cookies.get("themeMode") as LightDarkModeType | undefined;
+  const [lightDarkMode, setLightDarkMode] =
+    useState<LightDarkModeType>(storedTheme);
 
   const toggleLightDarkMode = () => {
-    setLightDarkMode((prevMode) => (prevMode === "dark" ? "light" : "dark"));
+    setLightDarkMode((prevMode) => {
+      const newMode = prevMode === "dark" ? "light" : "dark";
+      cookies.set("themeMode", newMode);
+      return newMode;
+    });
   };
+
+  useEffect(() => {
+    if (!storedTheme) {
+      cookies.set("themeMode", "dark");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [storedTheme]);
 
   return (
     <LightDarkModeContext.Provider
