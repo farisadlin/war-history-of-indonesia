@@ -12,7 +12,7 @@ export default function NavigationBar() {
   const { translationLang, toggleTranslation } = useTranslationLang();
 
   return (
-    <nav className="flex justify-between items-center p-5">
+    <nav className="flex justify-between items-center p-5 ml-48">
       <div className="flex-2 text-center">
         <h1 className="font-bold text-3xl m-0">{t("title_bar")}</h1>
       </div>
