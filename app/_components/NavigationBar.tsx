@@ -13,9 +13,9 @@ export default function NavigationBar() {
 
   return (
     <nav className="flex justify-between items-center p-5 ml-48">
-      <div className="flex-2 text-center">
-        <h1 className="font-bold text-3xl m-0">{t("title_bar")}</h1>
-      </div>
+      <h1 className="flex-2 text-center font-bold text-3xl m-0">
+        {t("title_bar")}
+      </h1>
       <NavigationMenu.Root className="flex justify-end flex-1">
         <NavigationMenu.List className="flex items-center">
           <NavigationMenu.Item className="mr-2">

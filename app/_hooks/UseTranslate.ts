@@ -1,8 +1,8 @@
 "use client";
 
-import { Locale } from "@/i18n";
-import changeLang from "@/lib/locale";
-import { getClientSideCookie } from "@/lib/utils";
+import { Locale } from "@/app/i18n";
+import changeLang from "@/app/lib/locale";
+import { getClientSideCookie } from "@/app/lib/utils";
 import { useEffect, useState } from "react";
 
 export const useTranslate = () => {
