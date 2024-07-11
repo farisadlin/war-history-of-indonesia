@@ -7,6 +7,7 @@ import { TranslationContextProvider } from "./_context/TranslationContext";
 import { CookiesProvider } from "next-client-cookies/server";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
+import { NextThemeProvider } from "./_components/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,15 +27,17 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          <CookiesProvider>
-            <LightDarkModeContextProvider>
-              <TranslationContextProvider>
-                {children}
-              </TranslationContextProvider>
-            </LightDarkModeContextProvider>
-          </CookiesProvider>
-        </NextIntlClientProvider>
+        <NextThemeProvider>
+          <NextIntlClientProvider locale={locale} messages={messages}>
+            <CookiesProvider>
+              <LightDarkModeContextProvider>
+                <TranslationContextProvider>
+                  {children}
+                </TranslationContextProvider>
+              </LightDarkModeContextProvider>
+            </CookiesProvider>
+          </NextIntlClientProvider>
+        </NextThemeProvider>
       </body>
     </html>
   );

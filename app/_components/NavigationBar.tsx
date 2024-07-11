@@ -5,17 +5,18 @@ import useLightDarkMode from "../_hooks/UseLightDarkMode";
 import { CaretDownIcon } from "@radix-ui/react-icons";
 import useTranslationLang from "../_hooks/UseTranslationLang";
 import { useTranslations } from "next-intl";
+import { Text } from "@radix-ui/themes";
 
 export default function NavigationBar() {
-  const t = useTranslations("Home");
+  const t = useTranslations();
   const { lightDarkMode, toggleLightDarkMode } = useLightDarkMode();
   const { translationLang, toggleTranslation } = useTranslationLang();
 
   return (
-    <nav className="flex justify-between items-center p-5 ml-48">
-      <h1 className="flex-2 text-center font-bold text-3xl m-0">
-        {t("title_bar")}
-      </h1>
+    <nav className="flex justify-between items-center p-5 ml-56 border-gray-500 border-b-[0.5px]">
+      <Text color="blue" className="flex-2 text-center font-bold text-3xl m-0">
+        {t("Home.titleBar")}
+      </Text>
       <NavigationMenu.Root className="flex justify-end flex-1">
         <NavigationMenu.List className="flex items-center">
           <NavigationMenu.Item className="mr-2">

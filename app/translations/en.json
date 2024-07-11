@@ -1,5 +1,13 @@
 {
   "Home": {
-    "title_bar": "War History of Indonesia"
+    "titleBar": "War History of Indonesia",
+    "sidebarMenu": {
+      "provinces": {
+        "title": "Provinces"
+      },
+      "years": {
+        "title": "Years"
+      }
+    }
   }
 }
