@@ -11,5 +11,13 @@
         "url": "/years"
       }
     }
+  },
+  "Toast": {
+    "codeCopied": "Kode berhasil disalin ke papan klip!"
+  },
+  "Common": {
+    "back": "Kembali",
+    "copy": "Salin",
+    "searchDocs": "Cari dokumen..."
   }
 }

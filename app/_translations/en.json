@@ -11,5 +11,13 @@
         "url": "/years"
       }
     }
+  },
+  "Toast": {
+    "codeCopied": "Code copied to clipboard!"
+  },
+  "Common": {
+    "back": "Back",
+    "copy": "Copy",
+    "searchDocs": "Search the docs..."
   }
 }

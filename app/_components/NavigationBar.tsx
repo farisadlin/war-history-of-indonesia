@@ -2,10 +2,10 @@
 import * as NavigationMenu from "@radix-ui/react-navigation-menu";
 import LightDarkModeSwitch from "./LightDarkModeSwitch";
 import useLightDarkMode from "../_hooks/UseLightDarkMode";
-import { CaretDownIcon } from "@radix-ui/react-icons";
+import { CaretDownIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import useTranslationLang from "../_hooks/UseTranslationLang";
 import { useTranslations } from "next-intl";
-import { Text } from "@radix-ui/themes";
+import { Text, TextField } from "@radix-ui/themes";
 import Link from "next/link";
 
 export default function NavigationBar() {
@@ -14,11 +14,23 @@ export default function NavigationBar() {
   const { translationLang, toggleTranslation } = useTranslationLang();
 
   return (
-    <nav className="flex justify-between items-center p-5 border-gray-500 border-b-[0.5px]">
+    <nav
+      className={`sticky top-0 flex justify-between items-center p-5 border-gray-500 border-b-[0.5px] z-10 ${
+        lightDarkMode === "dark" ? "bg-dark" : "bg-light"
+      }`}
+    >
       <Text color="blue" className="flex-2 text-center font-bold text-3xl m-0">
         <Link href="/">{t("Home.titleBar")}</Link>
       </Text>
       <NavigationMenu.Root className="flex justify-end flex-1">
+        <TextField.Root
+          placeholder={t("Common.searchDocs")}
+          className="w-1/3 py-2 mr-2"
+        >
+          <TextField.Slot>
+            <MagnifyingGlassIcon height="24px" width="24px" />
+          </TextField.Slot>
+        </TextField.Root>
         <NavigationMenu.List className="flex items-center">
           <NavigationMenu.Item className="mr-2">
             <NavigationMenu.Trigger className="text-violet11 hover:bg-violet3 focus:shadow-violet7 group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-3 py-2 text-[15px] font-medium leading-none outline-none focus:shadow-[0_0_0_2px] cursor-pointer">

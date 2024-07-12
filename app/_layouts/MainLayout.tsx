@@ -13,10 +13,8 @@ export default function MainLayout({
 }) {
   return (
     <ThemeLayout>
-      <Box className="ml-56">
-        <NavigationBar />
-        {children}
-      </Box>
+      <NavigationBar />
+      <Box className="ml-56">{children}</Box>
       <Sidebar />
     </ThemeLayout>
   );

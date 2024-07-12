@@ -1,11 +1,21 @@
 "use client";
 import React from "react";
 import Image from "next/image";
+import { HeroImageProps } from "@/app/_types";
 
-export default function HeroImage({ src, alt }: { src: string; alt: string }) {
+const HeroImage: React.FC<HeroImageProps> = ({ src, alt, ...props }) => {
   return (
-    <div className={"mdx-hero-image"}>
-      <Image src={src} alt={alt} fill></Image>
+    <div className="mdx-hero-image">
+      <Image
+        sizes="100vw"
+        width={0}
+        height={0}
+        src={src}
+        alt={alt}
+        {...props}
+      />
     </div>
   );
-}
+};
+
+export default HeroImage;

@@ -11,7 +11,7 @@ const nextConfig = {
   },
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
   images: {
-    domains: ["source.unsplash.com"],
+    domains: ["source.unsplash.com", "unsplash.com", "images.unsplash.com"],
   },
 };
 
