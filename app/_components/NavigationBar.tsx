@@ -6,6 +6,7 @@ import { CaretDownIcon } from "@radix-ui/react-icons";
 import useTranslationLang from "../_hooks/UseTranslationLang";
 import { useTranslations } from "next-intl";
 import { Text } from "@radix-ui/themes";
+import Link from "next/link";
 
 export default function NavigationBar() {
   const t = useTranslations();
@@ -15,7 +16,7 @@ export default function NavigationBar() {
   return (
     <nav className="flex justify-between items-center p-5 border-gray-500 border-b-[0.5px]">
       <Text color="blue" className="flex-2 text-center font-bold text-3xl m-0">
-        {t("Home.titleBar")}
+        <Link href="/">{t("Home.titleBar")}</Link>
       </Text>
       <NavigationMenu.Root className="flex justify-end flex-1">
         <NavigationMenu.List className="flex items-center">
