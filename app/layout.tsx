@@ -7,7 +7,7 @@ import { TranslationContextProvider } from "./_context/TranslationContext";
 import { CookiesProvider } from "next-client-cookies/server";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
-import { NextThemeProvider } from "./_components/ThemeProvider";
+import { NextThemeProvider } from "./components/ThemeProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 

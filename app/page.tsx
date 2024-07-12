@@ -1,10 +1,11 @@
 "use client";
 
-import { Theme } from "@radix-ui/themes";
-import NavigationBar from "./_components/NavigationBar";
+import { Box, Theme } from "@radix-ui/themes";
+import NavigationBar from "./components/NavigationBar";
 import useLightDarkMode from "./_hooks/UseLightDarkMode";
 import { appWithTranslation } from "next-i18next";
-import Sidebar from "./_components/Sidebar";
+import Sidebar from "./components/Sidebar";
+import MainLayout from "./components/MainLayout";
 
 function Home() {
   const { lightDarkMode } = useLightDarkMode();
@@ -19,8 +20,7 @@ function Home() {
       radius="full"
       className={`${lightDarkMode}-theme`}
     >
-      <Sidebar />
-      <NavigationBar />
+      <MainLayout />
     </Theme>
   );
 }

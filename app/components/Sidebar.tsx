@@ -1,5 +1,7 @@
-import { Box, Container, Link, Text } from "@radix-ui/themes";
+"use client";
+import { Box, Container, Text } from "@radix-ui/themes";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 import React from "react";
 
 export default function Sidebar() {
@@ -12,13 +14,13 @@ export default function Sidebar() {
       <Container className="border-gray-500 border-t-[0.5px] pt-[16.5px]">
         <ul className="px-5 flex gap-1 flex-col">
           {menuListKeys.map((key: string) => (
-            <Text
-              color="blue"
+            <Link
               className="cursor-pointer px-2 py-1 hover:bg-slate-100 rounded-md"
               key={key}
+              href={t(`sidebarMenu.${key}.url`)}
             >
-              {t(`sidebarMenu.${key}.title`)}
-            </Text>
+              <Text color="blue">{t(`sidebarMenu.${key}.title`)}</Text>
+            </Link>
           ))}
         </ul>
       </Container>

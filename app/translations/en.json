@@ -3,10 +3,12 @@
     "titleBar": "War History of Indonesia",
     "sidebarMenu": {
       "provinces": {
-        "title": "Provinces"
+        "title": "Provinces",
+        "url": "/provinces"
       },
       "years": {
-        "title": "Years"
+        "title": "Years",
+        "url": "/years"
       }
     }
   }

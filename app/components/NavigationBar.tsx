@@ -13,7 +13,7 @@ export default function NavigationBar() {
   const { translationLang, toggleTranslation } = useTranslationLang();
 
   return (
-    <nav className="flex justify-between items-center p-5 ml-56 border-gray-500 border-b-[0.5px]">
+    <nav className="flex justify-between items-center p-5 border-gray-500 border-b-[0.5px]">
       <Text color="blue" className="flex-2 text-center font-bold text-3xl m-0">
         {t("Home.titleBar")}
       </Text>
