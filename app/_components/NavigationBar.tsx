@@ -7,6 +7,8 @@ import useTranslationLang from "../_hooks/UseTranslationLang";
 import { useTranslations } from "next-intl";
 import { Text, TextField } from "@radix-ui/themes";
 import Link from "next/link";
+import Image from "next/image";
+import Logo from "@/app/_assets/logo.webp";
 
 export default function NavigationBar() {
   const t = useTranslations();
@@ -19,7 +21,11 @@ export default function NavigationBar() {
         lightDarkMode === "dark" ? "bg-dark" : "bg-light"
       }`}
     >
-      <Text color="blue" className="flex-2 text-center font-bold text-3xl m-0">
+      <Image width={50} height={50} src={Logo} alt="Logo" />
+      <Text
+        color="blue"
+        className="flex-2 text-center font-bold text-3xl m-0 ml-2"
+      >
         <Link href="/">{t("Home.titleBar")}</Link>
       </Text>
       <NavigationMenu.Root className="flex justify-end flex-1">

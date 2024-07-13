@@ -11,9 +11,9 @@ export default function Sidebar() {
   const menuListKeys = ["provinces", "years"] as const;
 
   return (
-    <Container className="fixed w-56 mt-[85px] h-full top-0 left-0 overflow-x-hidden border-gray-500 border-r-[0.5px]">
+    <Container className="fixed w-56 h-full top-0 left-0 overflow-x-hidden border-gray-500 border-r-[0.5px]">
       <Container className="border-gray-500 border-t-[0.5px] pt-[16.5px]">
-        <ul className="px-5 flex gap-1 flex-col">
+        <ul className="px-5 flex gap-1 flex-col mt-[85px]">
           {menuListKeys.map((key: string) => {
             const href = t(`sidebarMenu.${key}.url`);
             const isActive = pathname === href;

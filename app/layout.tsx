@@ -14,6 +14,9 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "War History of Indonesia",
   description: "War History of Indonesia",
+  icons: {
+    icon: "/icon.svg",
+  },
 };
 
 export default async function RootLayout({
