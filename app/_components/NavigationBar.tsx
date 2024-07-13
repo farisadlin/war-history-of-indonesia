@@ -21,12 +21,14 @@ export default function NavigationBar() {
         lightDarkMode === "dark" ? "bg-dark" : "bg-light"
       }`}
     >
-      <Image width={50} height={50} src={Logo} alt="Logo" />
+      <Link href="/">
+        <Image width={50} height={50} src={Logo} alt="Logo" />
+      </Link>
       <Text
         color="blue"
         className="flex-2 text-center font-bold text-3xl m-0 ml-2"
       >
-        <Link href="/">{t("Home.titleBar")}</Link>
+        {t("Home.titleBar")}
       </Text>
       <NavigationMenu.Root className="flex justify-end flex-1">
         <TextField.Root
