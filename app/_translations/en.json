@@ -18,6 +18,7 @@
   "Common": {
     "back": "Back",
     "copy": "Copy",
-    "searchDocs": "Search the docs..."
+    "searchDocs": "Search the docs...",
+    "signin": "Sign in"
   }
 }

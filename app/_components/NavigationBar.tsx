@@ -5,7 +5,7 @@ import useLightDarkMode from "../_hooks/UseLightDarkMode";
 import { CaretDownIcon, MagnifyingGlassIcon } from "@radix-ui/react-icons";
 import useTranslationLang from "../_hooks/UseTranslationLang";
 import { useTranslations } from "next-intl";
-import { Text, TextField } from "@radix-ui/themes";
+import { Button, Text, TextField } from "@radix-ui/themes";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/app/_assets/logo.webp";
@@ -40,7 +40,7 @@ export default function NavigationBar() {
           </TextField.Slot>
         </TextField.Root>
         <NavigationMenu.List className="flex items-center">
-          <NavigationMenu.Item className="mr-2">
+          <NavigationMenu.Item>
             <NavigationMenu.Trigger className="text-violet11 hover:bg-violet3 focus:shadow-violet7 group flex select-none items-center justify-between gap-[2px] rounded-[4px] px-3 py-2 text-[15px] font-medium leading-none outline-none focus:shadow-[0_0_0_2px] cursor-pointer">
               {translationLang.toUpperCase()}
               <CaretDownIcon
@@ -56,11 +56,16 @@ export default function NavigationBar() {
               </ul>
             </NavigationMenu.Content>
           </NavigationMenu.Item>
-          <NavigationMenu.Item>
+          <NavigationMenu.Item className="mr-2 ml-1">
             <LightDarkModeSwitch
               title={lightDarkMode}
               handleSwitch={toggleLightDarkMode}
             />
+          </NavigationMenu.Item>
+          <NavigationMenu.Item className="cursor-pointer">
+            <Button color="gray" variant="outline">
+              <Link href="/auth/signin">{t("Common.signin")}</Link>
+            </Button>
           </NavigationMenu.Item>
         </NavigationMenu.List>
       </NavigationMenu.Root>

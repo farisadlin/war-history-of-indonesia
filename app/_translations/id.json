@@ -18,6 +18,7 @@
   "Common": {
     "back": "Kembali",
     "copy": "Salin",
-    "searchDocs": "Cari dokumen..."
+    "searchDocs": "Cari dokumen...",
+    "signin": "Sign in"
   }
 }
