@@ -56,8 +56,9 @@ async function main() {
     //   id: "clylrj2bd0000vdxgdpsujee5", -> for an update
     // },
     data: {
-      name: "Nanda",
-      email: "nanda@prisma.io",
+      name: "Faris",
+      email: "faris@prisma.io",
+      password: "12345678",
       role: "MEMBER",
       posts: {
         create: {

@@ -1,4 +1,5 @@
 "use client";
+
 import React from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -8,6 +9,7 @@ import { Button } from "@radix-ui/themes";
 import { useTranslations } from "next-intl";
 import Input from "@/app/_components/Input";
 
+// Validation schema
 const schema = z.object({
   email: z.string().email({ message: "Invalid email address" }),
   password: z
@@ -15,6 +17,7 @@ const schema = z.object({
     .min(8, { message: "Password must be at least 8 characters" }),
 });
 
+// Infer form data type from schema
 type FormData = z.infer<typeof schema>;
 
 const Signin: React.FC = () => {
@@ -27,8 +30,26 @@ const Signin: React.FC = () => {
     resolver: zodResolver(schema),
   });
 
-  const onSubmit: SubmitHandler<FormData> = (data) => {
-    console.log(data);
+  const onSubmit: SubmitHandler<FormData> = async (data) => {
+    try {
+      const response = await fetch("/api/auth/signin", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.error("Error:", errorData.message);
+      } else {
+        const result = await response.json();
+        console.log("Token:", result.token);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
