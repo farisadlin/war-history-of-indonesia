@@ -2,47 +2,95 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-export type Post = {
-  id: number;
+type CommonDateType = {
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+type Post = {
+  id: string; // Changed to number to match the Prisma schema
   title: string;
   content: string | null;
   published: boolean;
-  authorId: number | null;
-};
+  authorId: string | null;
+} & CommonDateType;
 
-export type Profile = {
-  id: number;
+type Profile = {
+  id: string; // Changed to number to match the Prisma schema
   bio: string | null;
-  userId: number;
+  userId: string;
+  image: string; // Added this field to match the Prisma schema
 };
 
-export type User = {
-  id: number;
-  email: string;
-  name: string | null; // Updated to allow null
-};
+type Account = {
+  id: string;
+  userId: string;
+  providerType: string;
+  providerId: string;
+  providerAccountId: string;
+  refreshToken: string | null;
+  accessToken: string | null;
+  accessTokenExpires: Date | null;
+} & CommonDateType;
+
+type Session = {
+  id: string;
+  expires: Date;
+  sessionToken: string;
+  accessToken: string;
+  userId: string;
+} & CommonDateType;
+
+type User = {
+  id: string;
+  email: string | null;
+  name: string | null;
+  password: string | null;
+  emailVerified: Date | null;
+  image: string | null;
+} & CommonDateType;
 
 async function main() {
   await prisma.user.create({
+    // where: {
+    //   id: "clylrj2bd0000vdxgdpsujee5", -> for an update
+    // },
     data: {
-      name: "Chandra",
-      email: "chandra@prisma.io",
+      name: "Nanda",
+      email: "nanda@prisma.io",
+      role: "MEMBER",
       posts: {
-        create: { title: "Hello World" },
+        create: {
+          title: "Hello World",
+          content: `
+          ## Links
+
+          [Google](https://www.google.com) - This link takes you to Google.
+
+          [OpenAI](https://www.openai.com) - This link takes you to OpenAI.
+          `,
+        },
       },
       profile: {
-        create: { bio: "I like turtles" },
+        create: {
+          bio: "I like turtles",
+          image: "https://example.com/image.png",
+        }, // Added image field
       },
     },
   });
 
   const allUsers: (User & {
-    posts: Post[];
     profile: Profile | null;
+    posts: Post[];
+    accounts: Account[];
+    sessions: Session[];
   })[] = await prisma.user.findMany({
     include: {
       posts: true,
       profile: true,
+      accounts: true,
+      sessions: true,
     },
   });
 
