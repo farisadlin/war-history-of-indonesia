@@ -39,6 +39,7 @@ const Signin: React.FC = () => {
     setIsLoading(true);
     try {
       userLoginAction(data);
+      router.push("/");
     } catch (error) {
       console.error(error);
     }
