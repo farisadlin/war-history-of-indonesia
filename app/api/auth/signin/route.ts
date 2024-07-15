@@ -1,11 +1,7 @@
-// app/api/auth/signin/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-// import { compare } from "bcryptjs";
 import { sign } from "jsonwebtoken";
-import { PrismaClient, User } from "@prisma/client";
-
-const prisma = new PrismaClient();
+import prisma from "@/app/_lib/prisma";
 
 const signInSchema = z.object({
   email: z.string().email(),
@@ -14,12 +10,10 @@ const signInSchema = z.object({
 
 export async function POST(req: NextRequest) {
   try {
-    // Validate request body
     const body = await req.json();
     const { email, password } = signInSchema.parse(body);
 
-    // Find user by email
-    const user: User | null = await prisma.user.findUnique({
+    const user = await prisma.user.findUnique({
       where: { email },
     });
 
@@ -30,11 +24,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Compare passwords -> TODOS: do it after the registration is built
+    // Simulate password validation (assuming a hashed password is stored)
+    // TODO: Replace this with actual password comparison logic
     // const isPasswordValid = await compare(password, user.password ?? "");
-
-    // console.log({ password, userPass: user.password, isPasswordValid });
-
     // if (!isPasswordValid) {
     //   return NextResponse.json(
     //     { message: "Invalid email or password" },
@@ -42,16 +34,10 @@ export async function POST(req: NextRequest) {
     //   );
     // }
 
-    // Create JWT token
-    const token = sign(
-      { userId: user.id },
-      process.env.NEXT_PUBLIC_JWT_SECRET ?? "",
-      {
-        expiresIn: "1h",
-      }
-    );
+    const token = sign({ userId: user.id }, process.env.NEXTAUTH_SECRET ?? "", {
+      expiresIn: "1h",
+    });
 
-    // Respond with token
     return NextResponse.json({ token }, { status: 200 });
   } catch (error) {
     return NextResponse.json(

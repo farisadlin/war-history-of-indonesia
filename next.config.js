@@ -13,6 +13,12 @@ const nextConfig = {
   images: {
     domains: ["source.unsplash.com", "unsplash.com", "images.unsplash.com"],
   },
+  webpack5: true,
+  webpack: (config) => {
+    config.resolve.fallback = { fs: false };
+
+    return config;
+  },
 };
 
 module.exports = withNextIntl(withMDX(nextConfig));

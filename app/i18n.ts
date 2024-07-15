@@ -11,10 +11,10 @@ export type TFunction = (
 export default getRequestConfig(async () => {
   // Validate that the incoming `locale` parameter is valid
   const headerCookies = cookies();
-  let locale = headerCookies.get("lang")?.value || "";
+  let locale = headerCookies.get("lang")?.value || "en";
 
   if (!locale || !locales.includes(locale as Locale)) {
-    locale = "id";
+    locale = "en";
   }
 
   return {

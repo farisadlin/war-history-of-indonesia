@@ -9,11 +9,15 @@ import { Button, Text, TextField } from "@radix-ui/themes";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/app/_assets/logo.webp";
+import { useSession } from "next-auth/react";
 
 export default function NavigationBar() {
   const t = useTranslations();
   const { lightDarkMode, toggleLightDarkMode } = useLightDarkMode();
   const { translationLang, toggleTranslation } = useTranslationLang();
+  const data = useSession();
+
+  console.log({ data, lightDarkMode });
 
   return (
     <nav

@@ -12,8 +12,9 @@ export const LightDarkModeContextProvider: React.FC<{
 }> = ({ children }) => {
   const cookies = useCookies();
   const storedTheme = cookies.get("themeMode") as LightDarkModeType | undefined;
-  const [lightDarkMode, setLightDarkMode] =
-    useState<LightDarkModeType>(storedTheme);
+  const [lightDarkMode, setLightDarkMode] = useState<LightDarkModeType>(
+    storedTheme || "dark"
+  );
 
   const toggleLightDarkMode = () => {
     setLightDarkMode((prevMode) => {

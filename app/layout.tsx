@@ -2,12 +2,10 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/app/_styles/globals.css";
 import "@radix-ui/themes/styles.css";
-import { LightDarkModeContextProvider } from "./_context/LightDarkModeContext";
-import { TranslationContextProvider } from "./_context/TranslationContext";
-import { CookiesProvider } from "next-client-cookies/server";
-import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
-import { NextThemeProvider } from "./_components/ThemeProvider";
+import ClientWrapper from "@/app/_components/ClientWrapper"; // Adjust the import path as necessary
+import { CookiesProvider } from "next-client-cookies/server";
+import { auth } from "@/auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -26,21 +24,18 @@ export default async function RootLayout({
 }) {
   const locale = await getLocale();
   const messages = await getMessages();
+  const session = await auth();
+
+  console.log({ session });
 
   return (
     <html lang="en">
       <body className={inter.className}>
-        <NextThemeProvider>
-          <NextIntlClientProvider locale={locale} messages={messages}>
-            <CookiesProvider>
-              <LightDarkModeContextProvider>
-                <TranslationContextProvider>
-                  {children}
-                </TranslationContextProvider>
-              </LightDarkModeContextProvider>
-            </CookiesProvider>
-          </NextIntlClientProvider>
-        </NextThemeProvider>
+        <CookiesProvider>
+          <ClientWrapper session={session} locale={locale} messages={messages}>
+            {children}
+          </ClientWrapper>
+        </CookiesProvider>
       </body>
     </html>
   );
