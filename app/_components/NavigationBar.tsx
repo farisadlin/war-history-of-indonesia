@@ -10,6 +10,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/app/_assets/logo.webp";
 import { useSession } from "next-auth/react";
+import { userLogoutAction } from "../_lib/actions/auth";
 
 export default function NavigationBar() {
   const t = useTranslations();
@@ -17,7 +18,9 @@ export default function NavigationBar() {
   const { translationLang, toggleTranslation } = useTranslationLang();
   const data = useSession();
 
-  console.log({ data, lightDarkMode });
+  const handleSignOut = () => {
+    data.status === "authenticated" ? userLogoutAction() : null;
+  };
 
   return (
     <nav
@@ -68,7 +71,14 @@ export default function NavigationBar() {
           </NavigationMenu.Item>
           <NavigationMenu.Item className="cursor-pointer">
             <Button color="gray" variant="outline">
-              <Link href="/auth/signin">{t("Common.signin")}</Link>
+              <Link
+                href={data.status === "authenticated" ? "/" : "/auth/signin"}
+                onClick={handleSignOut}
+              >
+                {data.status === "authenticated"
+                  ? t("Common.signout")
+                  : t("Common.signin")}
+              </Link>
             </Button>
           </NavigationMenu.Item>
         </NavigationMenu.List>

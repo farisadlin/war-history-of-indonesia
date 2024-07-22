@@ -1,5 +1,5 @@
 "use server";
-import { signIn } from "../../../../auth";
+import { signIn, signOut } from "../../../../auth";
 
 type UserLoginActionType = {
   email: string;
@@ -13,4 +13,8 @@ export const userLoginAction = async (payload: UserLoginActionType) => {
       password: payload.password,
     });
   } catch (error) {}
+};
+
+export const userLogoutAction = async () => {
+  await signOut();
 };

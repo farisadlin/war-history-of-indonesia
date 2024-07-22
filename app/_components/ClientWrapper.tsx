@@ -1,8 +1,10 @@
 // components/ClientWrapper.tsx
-"use client";
+"use server";
+
 import { SessionProvider } from "next-auth/react";
 import { LightDarkModeContextProvider } from "@/app/_context/LightDarkModeContext";
 import { TranslationContextProvider } from "@/app/_context/TranslationContext";
+import { CookiesProvider } from "next-client-cookies/server";
 import { NextIntlClientProvider } from "next-intl";
 import { NextThemeProvider } from "@/app/_components/ThemeProvider";
 
@@ -21,9 +23,13 @@ const ClientWrapper = ({
     <SessionProvider session={session}>
       <NextThemeProvider>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <LightDarkModeContextProvider>
-            <TranslationContextProvider>{children}</TranslationContextProvider>
-          </LightDarkModeContextProvider>
+          <CookiesProvider>
+            <LightDarkModeContextProvider>
+              <TranslationContextProvider>
+                {children}
+              </TranslationContextProvider>
+            </LightDarkModeContextProvider>
+          </CookiesProvider>
         </NextIntlClientProvider>
       </NextThemeProvider>
     </SessionProvider>

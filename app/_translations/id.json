@@ -19,6 +19,7 @@
     "back": "Kembali",
     "copy": "Salin",
     "searchDocs": "Cari dokumen...",
-    "signin": "Sign in"
+    "signin": "Masuk",
+    "signout": "Keluar"
   }
 }

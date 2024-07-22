@@ -19,6 +19,7 @@
     "back": "Back",
     "copy": "Copy",
     "searchDocs": "Search the docs...",
-    "signin": "Sign in"
+    "signin": "Sign in",
+    "signout": "Sign out"
   }
 }

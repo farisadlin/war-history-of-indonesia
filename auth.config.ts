@@ -8,13 +8,12 @@ export const authConfig: NextAuthConfig = {
       id: "credentials",
       name: "Credentials",
       credentials: {
-        email: { label: "Email", type: "email" },
-        password: { label: "Password", type: "password" },
+        email: { label: "Email", type: "email", name: "email" },
+        password: { label: "Password", type: "password", name: "password" },
       },
       async authorize(
         credentials: Record<"email" | "password", string> | undefined | any
       ) {
-        console.log({ credentials });
         if (!credentials) {
           return null;
         }

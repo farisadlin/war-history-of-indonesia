@@ -26,8 +26,6 @@ export default async function RootLayout({
   const messages = await getMessages();
   const session = await auth();
 
-  console.log({ session });
-
   return (
     <html lang="en">
       <body className={inter.className}>
