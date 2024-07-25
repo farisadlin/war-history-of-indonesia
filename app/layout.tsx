@@ -29,11 +29,9 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <CookiesProvider>
-          <ClientWrapper session={session} locale={locale} messages={messages}>
-            {children}
-          </ClientWrapper>
-        </CookiesProvider>
+        <ClientWrapper session={session} locale={locale} messages={messages}>
+          {children}
+        </ClientWrapper>
       </body>
     </html>
   );

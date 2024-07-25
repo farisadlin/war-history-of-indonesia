@@ -21,6 +21,9 @@ export const {
     error: "/auth/error",
   },
   callbacks: {
+    async signIn() {
+      return true;
+    },
     async session({ session, token }: { session: Session; token: JWT }) {
       if (token && token.user) {
         session.user = token.user as User;

@@ -24,6 +24,8 @@ export default auth((req): any => {
     nextUrl.pathname
   );
 
+  return null;
+
   // if (isApiAuthRoute) {
   //   return null;
   // }

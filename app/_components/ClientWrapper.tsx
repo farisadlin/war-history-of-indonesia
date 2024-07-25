@@ -20,7 +20,7 @@ const ClientWrapper = ({
   messages: any;
 }) => {
   return (
-    <SessionProvider session={session}>
+    <SessionProvider basePath="/auth" session={session}>
       <NextThemeProvider>
         <NextIntlClientProvider locale={locale} messages={messages}>
           <CookiesProvider>

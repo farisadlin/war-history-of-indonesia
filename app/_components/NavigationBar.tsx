@@ -9,18 +9,12 @@ import { Button, Text, TextField } from "@radix-ui/themes";
 import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/app/_assets/logo.webp";
-import { useSession } from "next-auth/react";
-import { userLogoutAction } from "../_lib/actions/auth";
+import AuthButton from "./AuthButton";
 
 export default function NavigationBar() {
   const t = useTranslations();
   const { lightDarkMode, toggleLightDarkMode } = useLightDarkMode();
   const { translationLang, toggleTranslation } = useTranslationLang();
-  const data = useSession();
-
-  const handleSignOut = () => {
-    data.status === "authenticated" ? userLogoutAction() : null;
-  };
 
   return (
     <nav
@@ -70,16 +64,7 @@ export default function NavigationBar() {
             />
           </NavigationMenu.Item>
           <NavigationMenu.Item className="cursor-pointer">
-            <Button color="gray" variant="outline">
-              <Link
-                href={data.status === "authenticated" ? "/" : "/auth/signin"}
-                onClick={handleSignOut}
-              >
-                {data.status === "authenticated"
-                  ? t("Common.signout")
-                  : t("Common.signin")}
-              </Link>
-            </Button>
+            <AuthButton />
           </NavigationMenu.Item>
         </NavigationMenu.List>
       </NavigationMenu.Root>
